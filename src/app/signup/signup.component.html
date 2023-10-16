@@ -28,13 +28,26 @@
                 autocomplete="off"
               />
             </div>
+            <div *ngIf="formSubmitted">
+              <div *ngIf="signupForm.get('password').hasError('required')">
+                Password is required.
+              </div>
+              <div *ngIf="signupForm.get('password').hasError('minlength')">
+                Password must be at least 8 characters long.
+              </div>
+              <div *ngIf="signupForm.get('password').hasError('pattern')">
+                Password must contain at least one uppercase letter, one
+                lowercase letter, and one digit.
+              </div>
+            </div>
+
             <button type="submit">signup</button>
             <!-- <button type="submit" class="btn btn-info" (click)="signup()">
               Register
             </button> -->
             <div class="row">
               <div class="col-md-6">
-                <a routerLink="login" style="text-decoration: none"
+                <a routerLink="/login" style="text-decoration: none"
                   >Have an account ? <span class="text-danger">Login</span></a
                 >
               </div>

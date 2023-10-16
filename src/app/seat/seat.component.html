@@ -18,12 +18,10 @@
       <h5>LOWER DECK</h5>
       <h5>UPPER DECK</h5>
     </div>
-   
   </div>
 
   <div class="main-container">
     <div class="lower">
-      
       <div>
         <div class="row11" *ngFor="let seat of selected_bus; let i = index">
           <div
@@ -265,7 +263,9 @@
                       : 'none'
                   "
                 />
-                <span class="seat-number1" style="left: %; top: 30%;">{{ seat.Seat_No }}</span>
+                <span class="seat-number1" style="left: %; top: 30%">{{
+                  seat.Seat_No
+                }}</span>
               </label>
             </div>
           </div>
@@ -273,12 +273,9 @@
       </div>
     </div>
   </div>
-  
-  
 </div>
 <div class="center-button-container">
-  <button type="button" class="center-button" (click)="displaySelectedItems()">BOOK</button>
+  <button type="button" class="center-button" (click)="displaySelectedItems()">
+    BOOK
+  </button>
 </div>
-
-
-

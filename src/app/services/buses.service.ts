@@ -11,10 +11,11 @@ export class BusesService {
   bus_No;
   Cost;
   select: any[] = [];
-  names:any[]=[];
-  ages:any[]=[];
-  genders:any[]=[];
-  sendata( selectedItems, bus_No, select) {
+  names: any[] = [];
+  ages: any[] = [];
+  genders: any[] = [];
+
+  sendata(selectedItems, bus_No, select) {
     this.selected_seats.push(selectedItems);
     this.bus_No = bus_No;
     this.select = select;
@@ -31,48 +32,42 @@ export class BusesService {
   getObj() {
     return this.select;
   }
-  getFormValues(names,ages,genders)
-  {
-    this.names=names;
-    this.ages=ages;
-    this.genders=genders;
+  getFormValues(names, ages, genders) {
+    this.names = names;
+    this.ages = ages;
+    this.genders = genders;
   }
-  formValues_names()
-  {
+  formValues_names() {
     return this.names;
   }
-  formValues_ages()
-  {
+  formValues_ages() {
     return this.ages;
   }
-  formValues_genders()
-  {
+  formValues_genders() {
     return this.genders;
   }
-  send_cost(cost)
-  {
-    this.Cost=cost;
+  send_cost(cost) {
+    this.Cost = cost;
   }
-  getCost()
-  {
+  getCost() {
     return this.Cost;
   }
-  send_form(name,age,gender)
-  {
-    this.names=name;
-    this.ages=age;
-    this.genders=gender;
+  send_form(name, age, gender) {
+    this.names = name;
+    this.ages = age;
+    this.genders = gender;
   }
-  get_name()
-  {
+  get_name() {
     return this.names;
   }
-  get_age()
-  {
+  get_age() {
     return this.ages;
   }
-  get_gender()
-  {
+  get_gender() {
     return this.genders;
+  }
+  bus_array: any[] = ['KRISHNA TRAVELS', 'SRI TRAVELS', 'JK TRAVELS'];
+  get_bus() {
+    return this.bus_array;
   }
 }

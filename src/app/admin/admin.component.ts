@@ -19,7 +19,6 @@ import { AuthService } from '../shared/auth.service';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  
   loginForm: FormGroup;
   BUS1: any[] = [];
   BUS2: any[] = [];
@@ -35,7 +34,7 @@ export class AdminComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private authSer:AuthService
+    private authSer: AuthService
   ) {}
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -43,11 +42,11 @@ export class AdminComponent implements OnInit {
       password: [
         '',
         [
-          Validators.required,
           Validators.minLength(8),
           Validators.pattern(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/
           ),
+          Validators.required,
         ],
       ],
     });
@@ -66,18 +65,15 @@ export class AdminComponent implements OnInit {
   }
 
   login() {
-    if(this.loginForm.valid)
-    {
+    if (this.loginForm.valid) {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
-      if(email==='admin@gmail.com' && password==='Admin@123')
-      {
+      if (email === 'admin@gmail.com' && password === 'Admin@123') {
         this.authSer.send_admin('true');
         this.router.navigate(['admindetails']);
+      } else {
+        alert('Please enter valid email and password');
       }
-    else {
-      alert('Please enter valid email and password');
     }
-    }
-}
+  }
 }

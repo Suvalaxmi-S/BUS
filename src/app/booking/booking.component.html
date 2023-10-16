@@ -11,16 +11,12 @@
 </div> -->
 
 <div class="main">
-  
-    <p>BOOKED PERSON DETAILS</p>
-  
-      <div class="sub" *ngFor="let v of select; let j = index">
-        <p>SEAT_NO:{{select[j].Seat_No}}</p>
-        <p>NAME:{{ names[j] }}</p>
-        <p>GENDER:{{ genders[j] }}</p>
-        <p>AGE:{{ ages[j] }}</p>
-      </div>
+  <p>BOOKED PERSON DETAILS</p>
 
-    
-
+  <div class="sub" *ngFor="let v of select; let j = index">
+    <p>SEAT_NO:{{ select[j].Seat_No }}</p>
+    <p>NAME:{{ names[j] }}</p>
+    <p>GENDER:{{ genders[j] }}</p>
+    <p>AGE:{{ ages[j] }}</p>
+  </div>
 </div>

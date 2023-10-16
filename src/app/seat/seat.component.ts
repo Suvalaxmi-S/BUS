@@ -33,7 +33,7 @@ export class SeatComponent implements OnInit {
   Cost: number = 0;
   select_id: any[] = [];
   global = null;
-  seatnumbers:any[]=[];
+  seatnumbers: any[] = [];
 
   isSelected(seatNo: string, type: string, selected: object) {
     this.selectedState[seatNo] = !this.selectedState[seatNo];
@@ -43,10 +43,8 @@ export class SeatComponent implements OnInit {
       this.select.push(selected);
     } else {
       this.selectedItems = this.selectedItems.filter((item) => item !== seatNo);
-      this.select=this.select.filter((item)=>item.Seat_No !==seatNo);
+      this.select = this.select.filter((item) => item.Seat_No !== seatNo);
     }
-
-
 
     console.log('OBJECT_MAIN:', this.select);
     console.log(this.selectedItems, this.Cost);
@@ -56,23 +54,22 @@ export class SeatComponent implements OnInit {
   displaySelectedItems() {
     if (this.select.length <= 5) {
       this.canBook = true;
-      for(let i in this.select)
-      {
-      if (this.select[i].Seat_type === 'seater') this.Cost = this.Cost + 700;
-      if (this.select[i].Seat_type === 'sleeper_lower') this.Cost = this.Cost + 1200;
-      if (this.select[i].Seat_type === 'sleeper_upper') this.Cost = this.Cost + 1100;
+      for (let i in this.select) {
+        if (this.select[i].Seat_type === 'seater') this.Cost = this.Cost + 700;
+        if (this.select[i].Seat_type === 'sleeper_lower')
+          this.Cost = this.Cost + 1200;
+        if (this.select[i].Seat_type === 'sleeper_upper')
+          this.Cost = this.Cost + 1100;
       }
       this.busSer.send_cost(this.Cost);
-      this.busSer.sendata(this.selectedItems,this.bus_No,this.select);
+      this.busSer.sendata(this.selectedItems, this.bus_No, this.select);
       this.router.navigate(['form']);
-      
     } else {
       alert('a person can select a maximum of 5 seats only');
     }
     console.log('Selected Items:', this.selectedItems);
   }
-  
-  
+
   female_color = Array(28).fill(false);
 
   Array1 = [
@@ -106,43 +103,65 @@ export class SeatComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       const busNo = params.get('Bus_No');
       this.bus_No = busNo;
-      console.log(busNo);});
-      
-      const buses = [
-        { busNo: '456', seatUrl: 'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus1.json' ,ind:0},
-        { busNo: '789', seatUrl: 'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus2.json' ,ind:1},
-        { busNo: '985', seatUrl: 'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus3.json' ,ind:2},
-      ];
-  
-      // Iterate through buses
-      for (const bus of buses) {
-        if (this.bus_No === bus.busNo) {
-          console.log("hello");
-          this.fetchAndProcessBusData(bus);
-        }
+      console.log(busNo);
+    });
+
+    const buses = [
+      {
+        busNo: '456',
+        seatUrl:
+          'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus1.json',
+        ind: 0,
+      },
+      {
+        busNo: '789',
+        seatUrl:
+          'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus2.json',
+        ind: 1,
+      },
+      {
+        busNo: '985',
+        seatUrl:
+          'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus3.json',
+        ind: 2,
+      },
+    ];
+
+    // Iterate through buses
+    for (const bus of buses) {
+      if (this.bus_No === bus.busNo) {
+        console.log('hello');
+        this.fetchAndProcessBusData(bus);
       }
     }
-  
-    // Define a function to fetch and process bus data
-    private fetchAndProcessBusData(bus: { busNo: string; seatUrl: string;ind:number }): void {
-      this.http.get(bus.seatUrl).pipe(
+  }
+
+  // Define a function to fetch and process bus data
+  private fetchAndProcessBusData(bus: {
+    busNo: string;
+    seatUrl: string;
+    ind: number;
+  }): void {
+    this.http
+      .get(bus.seatUrl)
+      .pipe(
         map((data) => {
           const dataEntryed = [];
-        
+
           for (const key in data) {
             if (data.hasOwnProperty(key)) {
               dataEntryed.push({ ...data[key], id: key });
             }
           }
-  
+
           return dataEntryed;
         })
-      ).subscribe((res) => {
+      )
+      .subscribe((res) => {
         // Process the bus data
         this.selected_bus = res;
         console.log(this.selected_bus);
-        
-  
+
         for (let i in this.Array1) {
           for (let k in this.selected_bus) {
             if (this.selected_bus[k].Seat_No === this.Array1[i]) {
@@ -196,27 +215,28 @@ export class SeatComponent implements OnInit {
           }
         }
       });
-  
-      this.http.get(`https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS[${bus.ind}].json`)
-        .pipe(
-          map((data) => {
-            const dataEntryed = [];
-  
-            for (const key in data) {
-              if (data.hasOwnProperty(key)) {
-                dataEntryed.push({ ...data[key], id: key });
-              }
+
+    this.http
+      .get(
+        `https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS[${bus.ind}].json`
+      )
+      .pipe(
+        map((data) => {
+          const dataEntryed = [];
+
+          for (const key in data) {
+            if (data.hasOwnProperty(key)) {
+              dataEntryed.push({ ...data[key], id: key });
             }
-  
-            return dataEntryed;
-          })
-        )
-        .subscribe((res) => {
-          this.selected_bus_name = res;
-          console.log(this.selected_bus_name);
-        });
-    
-      
+          }
+
+          return dataEntryed;
+        })
+      )
+      .subscribe((res) => {
+        this.selected_bus_name = res;
+        console.log(this.selected_bus_name);
+      });
 
     const checkboxNames = [
       'S1',
@@ -253,8 +273,4 @@ export class SeatComponent implements OnInit {
       this.selectedState[name] = false;
     });
   }
-  
-  
-  
-
-  }
+}

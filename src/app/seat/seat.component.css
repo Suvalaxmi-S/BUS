@@ -4,8 +4,10 @@
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  margin-left:150px;
+  margin-left: 60px;
   position: relative;
+  flex: 1;
+  justify-content: center;
 }
 
 .checkbox-container {
@@ -113,12 +115,6 @@
   background-color: #45a049;
 }
 
-.main-container {
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  /* Takes 2/3 of the container width */
-}
 .head {
   display: flex;
   margin-left: 300px;
@@ -150,7 +146,7 @@ and text */
 
 .flex {
   display: flex;
-  margin-left:10px;
+  margin-left: 10px;
 }
 
 input[type="checkbox"]:checked {
@@ -242,14 +238,14 @@ img {
   justify-content: space-around;
   width: 100%;
   margin-right: 0px;
-  line-height:20px;
+  line-height: 20px;
 }
 .row12 {
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin-right: 10px;
-  line-height:20px;
+  line-height: 20px;
 }
 .row13 {
   display: flex;
@@ -284,17 +280,17 @@ img {
 .lower {
   display: flex;
   border: 2px solid black;
-  width:150px;
-  height:300px;
-  margin-right:20px;
-  background-color:aliceblue;
+  width: 150px;
+  height: 300px;
+  margin-right: 20px;
+  background-color: aliceblue;
 }
 .upper {
   display: flex;
   border: 2px solid black;
-  width:150px;
-  height:300px;
-  background-color:aliceblue;
+  width: 150px;
+  height: 300px;
+  background-color: aliceblue;
 }
 .seat-info .seat-number {
   position: absolute;
@@ -317,7 +313,7 @@ img {
   font-size: 5px;
 }
 .center-button-container {
-  align-items:center;
+  margin-left: 60px;
   display: flex;
   justify-content: center;
 }
@@ -330,23 +326,19 @@ img {
   position: relative;
   height: 100%;
 }
-.row1 .checkbox-container{
-
+.row1 .checkbox-container {
   height: 70px; /* Adjust the height as needed */
   position: relative;
 }
-.row2 .checkbox-container{
-
+.row2 .checkbox-container {
   height: 70px; /* Adjust the height as needed */
   position: relative;
 }
-.row3 .checkbox-container{
-
+.row3 .checkbox-container {
   height: 70px; /* Adjust the height as needed */
   position: relative;
 }
-.row13 .checkbox-container{
-
+.row13 .checkbox-container {
   height: 70px; /* Adjust the height as needed */
   position: relative;
 }
@@ -355,7 +347,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding-left: 350px;
-  position:relative;
+  position: relative;
 }
 
 .deck {
@@ -366,9 +358,8 @@ img {
   margin-right: 80px; /* Adjust the margin as needed for spacing */
 }
 
-.center-button-container{
-  margin-top:10px;
-  padding-left:155px;
+.center-button-container {
+  margin-top: 10px;
 }
 
 .center-button-container {
@@ -376,15 +367,15 @@ img {
 }
 
 .center-button {
-  padding: 10px 20px; 
-  font-size: 16px; 
-  background-color: #4CAF50;
-  color: white; 
-  border: none; 
-  border-radius: 5px; 
-  cursor: pointer; 
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .center-button:hover {
-  background-color: #45a049; 
+  background-color: #45a049;
 }

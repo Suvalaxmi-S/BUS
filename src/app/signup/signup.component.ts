@@ -10,11 +10,19 @@ import { AuthService } from '../shared/auth.service';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  
+  formSubmitted: boolean = false;
+
   constructor(private formBuilder: FormBuilder, private auth: AuthService) {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/),
+        ],
+      ],
     });
   }
   get email() {
@@ -25,13 +33,15 @@ export class SignupComponent implements OnInit {
     return this.signupForm.get('password');
   }
   signup() {
-    const email = this.signupForm.value.email;
-    const password = this.signupForm.value.password;
-    this.auth.signup(email,password);
-    
-    this.signupForm.reset();
+    this.formSubmitted = true;
+    if (this.signupForm.valid) {
+      const email = this.signupForm.value.email;
+      const password = this.signupForm.value.password;
+      this.auth.signup(email, password);
+
+      this.signupForm.reset();
+      this.formSubmitted = false;
+    }
   }
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 }
