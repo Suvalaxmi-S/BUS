@@ -1,0 +1,390 @@
+.main-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left:150px;
+  position: relative;
+}
+
+.checkbox-container {
+  position: relative;
+  margin-bottom: 0px;
+}
+.selected-seat img {
+  border: 2px solid black;
+}
+.checkbox-container input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container label {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.checkbox-container img {
+  width: 30px;
+  height: 30px;
+  transition: filter 0.3s;
+}
+
+.custom-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAAYFBMVEX///8AAABhYWHm5uZmZmb6+vp/f38iIiK+vr5aWlr19fXHx8eVlZXCwsLy8vLY2NhFRUUPDw+dnZ2mpqa3t7eMjIxSUlLPz890dHSGhoYZGRlra2tAQEBNTU01NTUqKiprukW9AAAChklEQVRoge2bXXeCMAyGkQoCYlFaVhSG//9frqHbmXwVSbaznS3vndTmaWkSbt4GAYvF+pWSWl1jlHJliGwR33YEnRMK/HihsEFxhIaXLsLtgJKb3Ekk/ASzL1UhkDIpBGhw8AxW/yKQS++lIWs0amoOcOx7e5exMVpUjFc7s6DBgyC2QY6e8cgkZT6j2Ob7mQoPtKWHZvH49IunXkoi+5S6ku3iWX5We6v1RGLL/UOofOYPqb9XKApcnF2Qy1LfUfC41cc5QasJKfTWBTfGlP0CqtG49O1PdHaQUHAVdEn98GOc+7D16+L0xo7WaLiARvP5keubx/DdN97dFTvv4lZUDjMtSifdI7RPPAH619UeRRZtF/Sq22OZJZO8X6FHLmnv4X67mkmv2o0/OCv0IPJ3gzXtx/RhCa3R7endf5IeSNV0P0e3irLtivRX0VFKmM50pjOd6UxnOtOZznSmM53pTGc605nOdKYznelMZzrTmc50pjOd6UxnOtP/O13oEmMkDr+CXjQEPy+VrvFoOr1yUVBe4glsK73fOdZLfFh1eYGJa9krLOHI0V7ibsbhNvQ2wuaW3YM0LzGcmt/dl8GrXXIPRjQvce9MHDob25Gr1OV0lZxmpG40L/EVQr9bRiUYmqeO5hX7HsVLnPWdIlVCFlVvUpw549xLJ3mJi8Ow+uduERS1x71H8hIH4tGpvJRewnyPl9gmrv6485FuvT4iwYlMNO+7wquTbPvE2NsNnpOwMe6ohiV8x/WcCsipOe/6E3IOc5yX2EqKCorujL0x47oBykts9drPvuAvnSh/M3pCISVvje9Wxbo6hb+o5PgqDlOMwrok3dH6EC7piLtmsf6Q3gCrizBe13X0lAAAAABJRU5ErkJggg==")
+    no-repeat;
+  background-size: cover;
+}
+
+.custom-checkbox.checked {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAAYFBMVEX///8AAABhYWHm5uZmZmb6+vp/f38iIiK+vr5aWlr19fXHx8eVlZXCwsLy8vLY2NhFRUUPDw+dnZ2mpqa3t7eMjIxSUlLPz890dHSGhoYZGRlra2tAQEBNTU01NTUqKiprukW9AAAChklEQVRoge2bXXeCMAyGkQoCYlFaVhSG//9frqHbmXwVSbaznS3vndTmaWkSbt4GAYvF+pWSWl1jlHJliGwR33YEnRMK/HihsEFxhIaXLsLtgJKb3Ekk/ASzL1UhkDIpBGhw8AxW/yKQS++lIWs0amoOcOx7e5exMVpUjFc7s6DBgyC2QY6e8cgkZT6j2Ob7mQoPtKWHZvH49IunXkoi+5S6ku3iWX5We6v1RGLL/UOofOYPqb9XKApcnF2Qy1LfUfC41cc5QasJKfTWBTfGlP0CqtG49O1PdHaQUHAVdEn98GOc+7D16+L0xo7WaLiARvP5keubx/DdN97dFTvv4lZUDjMtSifdI7RPPAH619UeRRZtF/Sq22OZJZO8X6FHLmnv4X67mkmv2o0/OCv0IPJ3gzXtx/RhCa3R7endf5IeSNV0P0e3irLtivRX0VFKmM50pjOd6UxnOtOZznSmM53pTGc605nOdKYznelMZzrTmc50pjOd6UxnOtP/O13oEmMkDr+CXjQEPy+VrvFoOr1yUVBe4glsK73fOdZLfFh1eYGJa9krLOHI0V7ibsbhNvQ2wuaW3YM0LzGcmt/dl8GrXXIPRjQvce9MHDob25Gr1OV0lZxmpG40L/EVQr9bRiUYmqeO5hX7HsVLnPWdIlVCFlVvUpw549xLJ3mJi8Ow+uduERS1x71H8hIH4tGpvJRewnyPl9gmrv6485FuvT4iwYlMNO+7wquTbPvE2NsNnpOwMe6ohiV8x/WcCsipOe/6E3IOc5yX2EqKCorujL0x47oBykts9drPvuAvnSh/M3pCISVvje9Wxbo6hb+o5PgqDlOMwrok3dH6EC7piLtmsf6Q3gCrizBe13X0lAAAAABJRU5ErkJggg==")
+    no-repeat;
+  background-size: cover;
+}
+
+.disabled-checkbox {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.custom-checkbox.checked {
+  background-color: black; /* Change to your desired color */
+}
+
+/* Additional style for the checkmark inside the checkbox */
+.custom-checkbox.checked input[type="checkbox"] {
+  border: 2px solid black; /* Change to your desired color */
+}
+
+/* Center the form */
+.center-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: auto; /* Add vertical scrollbar when needed */
+}
+
+/* Style the form */
+.form-container {
+  border: 2px solid rgb(29, 29, 29);
+  padding: 20px;
+  width: 400px;
+  border-radius: 10px;
+  background-color: #dad4d4;
+  max-height: 80vh; /* Maximum height for the form container */
+  overflow-y: auto; /* Add vertical scrollbar when needed */
+}
+
+/* Optional: Style form elements */
+.form-container label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+/* Center the button */
+.form-container button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Optional: Hover effect for the button */
+.form-container button:hover {
+  background-color: #45a049;
+}
+
+.main-container {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  /* Takes 2/3 of the container width */
+}
+.head {
+  display: flex;
+  margin-left: 300px;
+  margin-bottom: 30px;
+  border: 2px solid black;
+  width: 380px;
+  position: relative;
+
+  /* Adjust as needed */
+}
+
+.f1 {
+  display: flex;
+  align-items: center;
+  text-align: right;
+  margin-left: 10px;
+}
+
+.f1 img {
+  width: 30px; /* Adjust as needed */
+  height: 30px; /* Adjust as needed */
+  margin-right: 5px; /* Adjust as needed to create space between image
+and text */
+}
+
+.f1 p {
+  margin: 0; /* Remove default margin on paragraph */
+}
+
+.flex {
+  display: flex;
+  margin-left:10px;
+}
+
+input[type="checkbox"]:checked {
+  /* background-image: url("sofaselected.png"); Replace with your
+checked image URL */
+  border: 2px solid black;
+}
+img {
+  width: 60px;
+  height: 60px;
+}
+
+.f4 {
+  width: 30px;
+  height: 30px;
+  border: 3px solid pink;
+  /* Adjust the margin as needed */
+}
+/* Add your custom styles for the UPI dialog box */
+.upi-dialog {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the form inside the UPI dialog */
+.upi-dialog {
+  border: 2px solid black;
+  background-color: #ccc;
+}
+.upi-dialog form {
+  display: flex;
+  flex-direction: column;
+}
+
+.upi-dialog label {
+  margin-bottom: 8px;
+}
+
+.upi-dialog input {
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid rgb(26, 24, 24);
+  border-radius: 4px;
+}
+
+.upi-dialog button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.upi-dialog button:hover {
+  background-color: #45a049;
+}
+
+/* Add your custom styles for the success message */
+.success-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #4caf50; /* Green background color */
+  color: #fff; /* White text color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.total_cost {
+  padding-left: 50px;
+}
+
+.upper-deck {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+  justify-content: space-around; /* Adjust as needed */
+}
+
+/* Styles for the first two rows */
+.row11 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-right: 0px;
+  line-height:20px;
+}
+.row12 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-right: 10px;
+  line-height:20px;
+}
+.row13 {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-right: 40px;
+  line-height: 50px;
+}
+.as {
+  border: 2px solid black;
+}
+.row2 {
+  margin-right: 30px;
+  line-height: 50px;
+}
+.row1 {
+  line-height: 50px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-right: 15px;
+}
+.row3 {
+  line-height: 50px;
+}
+.align {
+  margin-top: 0px;
+}
+.seat-info img {
+  margin-right: 5px; /* Adjust the margin as needed */
+}
+.lower {
+  display: flex;
+  border: 2px solid black;
+  width:150px;
+  height:300px;
+  margin-right:20px;
+  background-color:aliceblue;
+}
+.upper {
+  display: flex;
+  border: 2px solid black;
+  width:150px;
+  height:300px;
+  background-color:aliceblue;
+}
+.seat-info .seat-number {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  color: rgb(5, 4, 4);
+  font-size: 12px;
+}
+.seat-info {
+  position: relative;
+  z-index: 1;
+}
+.seat-info .seat-number1 {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  color: rgb(5, 4, 4);
+  font-size: 5px;
+}
+.center-button-container {
+  align-items:center;
+  display: flex;
+  justify-content: center;
+}
+.checkbox-container {
+  height: 50px; /* Adjust the height as needed */
+  position: relative;
+}
+
+.sub {
+  position: relative;
+  height: 100%;
+}
+.row1 .checkbox-container{
+
+  height: 70px; /* Adjust the height as needed */
+  position: relative;
+}
+.row2 .checkbox-container{
+
+  height: 70px; /* Adjust the height as needed */
+  position: relative;
+}
+.row3 .checkbox-container{
+
+  height: 70px; /* Adjust the height as needed */
+  position: relative;
+}
+.row13 .checkbox-container{
+
+  height: 70px; /* Adjust the height as needed */
+  position: relative;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 350px;
+  position:relative;
+}
+
+.deck {
+  display: flex;
+}
+
+.deck h5 {
+  margin-right: 80px; /* Adjust the margin as needed for spacing */
+}
+
+.center-button-container{
+  margin-top:10px;
+  padding-left:155px;
+}
+
+.center-button-container {
+  text-align: center;
+}
+
+.center-button {
+  padding: 10px 20px; 
+  font-size: 16px; 
+  background-color: #4CAF50;
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.center-button:hover {
+  background-color: #45a049; 
+}

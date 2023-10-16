@@ -1,0 +1,284 @@
+<div clas="flex">
+  <div class="head">
+    <div class="f1">
+      <img src="./assets/seater.png" style="width: 30px; height: 30px" />
+      <p>SEATER</p>
+    </div>
+    <div class="f1">
+      <img src="./assets/seat3.png" style="width: 30px; height: 30px" />
+      <p>SLEEPER</p>
+    </div>
+    <div class="f1">
+      <div class="f4"></div>
+      <p>LADIES SEAT</p>
+    </div>
+  </div>
+  <div class="heading">
+    <div class="deck">
+      <h5>LOWER DECK</h5>
+      <h5>UPPER DECK</h5>
+    </div>
+   
+  </div>
+
+  <div class="main-container">
+    <div class="lower">
+      
+      <div>
+        <div class="row11" *ngFor="let seat of selected_bus; let i = index">
+          <div
+            class="checkbox-container"
+            *ngIf="seat.Seat_type === 'seater' && i <= 5"
+          >
+            <div class="sub">
+              <label
+                class="custom-checkbox seat-info"
+                [class.checked]="seat.Booked_status"
+                [class.disabled-checkbox]="seat.Booked_status"
+              >
+                <input
+                  type="checkbox"
+                  [value]="seat.BusNo"
+                  name="selectedItems"
+                  (change)="isSelected(seat.Seat_No, seat.Seat_type, seat)"
+                  [disabled]="seat.Booked_status"
+                />
+                <img
+                  src="./assets/seater.png"
+                  alt="Seat"
+                  [ngStyle]="{
+                    border: this.female_color[i]
+                      ? '3px
+                  solid pink'
+                      : 'none'
+                  }"
+                  [style.border]="
+                    this.selectedState[seat.Seat_No]
+                      ? '2px solid black'
+                      : 'none'
+                  "
+                />
+                <span class="seat-number">{{ seat.Seat_No }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row12" *ngFor="let seat of selected_bus; let i = index">
+          <div
+            class="checkbox-container seat-info"
+            *ngIf="seat.Seat_type === 'seater' && i <= 11 && i >= 6"
+          >
+            <div class="sub">
+              <label
+                class="custom-checkbox"
+                [class.checked]="seat.Booked_status"
+                [class.disabled-checkbox]="seat.Booked_status"
+              >
+                <input
+                  type="checkbox"
+                  [value]="seat.BusNo"
+                  name="selectedItems"
+                  (change)="isSelected(seat.Seat_No, seat.Seat_type, seat)"
+                  [disabled]="seat.Booked_status"
+                />
+
+                <img
+                  src="./assets/seater.png"
+                  alt="Seat"
+                  [ngStyle]="{
+                    border: this.female_color[i]
+                      ? '3px
+                    solid pink'
+                      : 'none'
+                  }"
+                  [style.border]="
+                    this.selectedState[seat.Seat_No]
+                      ? '2px solid black'
+                      : 'none'
+                  "
+                />
+                <span class="seat-number">{{ seat.Seat_No }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row13" *ngFor="let seat of selected_bus; let i = index">
+          <div
+            class="checkbox-container"
+            *ngIf="seat.Seat_type === 'sleeper_lower' && i <= 15 && i >= 12"
+          >
+            <div class="sub">
+              <label
+                class="custom-checkbox seat-info"
+                [class.checked]="seat.Booked_status"
+                [class.disabled-checkbox]="seat.Booked_status"
+              >
+                <input
+                  type="checkbox"
+                  [value]="seat.BusNo"
+                  name="selectedItems"
+                  (change)="isSelected(seat.Seat_No, seat.Seat_type, seat)"
+                  [disabled]="seat.Booked_status"
+                />
+
+                <img
+                  src="./assets/seat3.png"
+                  alt="Seat"
+                  [ngStyle]="{
+                    border: this.female_color[i]
+                      ? '3px
+                    solid pink'
+                      : 'none'
+                  }"
+                  [style.border]="
+                    this.selectedState[seat.Seat_No]
+                      ? '2px solid black'
+                      : 'none'
+                  "
+                />
+                <span class="seat-number1">{{ seat.Seat_No }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="upper">
+      <div>
+        <div class="row1" *ngFor="let seat of selected_bus; let i = index">
+          <div
+            class="checkbox-container"
+            *ngIf="seat.Seat_type === 'sleeper_upper' && i >= 16 && i <= 19"
+          >
+            <div class="sub">
+              <label
+                class="custom-checkbox seat-info"
+                [class.checked]="seat.Booked_status"
+                [class.disabled-checkbox]="seat.Booked_status"
+              >
+                <input
+                  type="checkbox"
+                  [value]="seat.BusNo"
+                  name="selectedItems"
+                  (change)="isSelected(seat.Seat_No, seat.Seat_type, seat)"
+                  [disabled]="seat.Booked_status"
+                />
+
+                <img
+                  src="./assets/seat3.png"
+                  alt="Seat"
+                  [ngStyle]="{
+                    border: this.female_color[i]
+                      ? '3px
+                  solid pink'
+                      : 'none'
+                  }"
+                  [style.border]="
+                    this.selectedState[seat.Seat_No]
+                      ? '2px solid black'
+                      : 'none'
+                  "
+                />
+                <span class="seat-number1">{{ seat.Seat_No }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row2" *ngFor="let seat of selected_bus; let i = index">
+          <div
+            class="checkbox-container"
+            *ngIf="seat.Seat_type === 'sleeper_upper' && i <= 23 && i >= 20"
+          >
+            <div class="sub">
+              <label
+                class="custom-checkbox seat-info"
+                [class.checked]="seat.Booked_status"
+                [class.disabled-checkbox]="seat.Booked_status"
+              >
+                <input
+                  type="checkbox"
+                  [value]="seat.BusNo"
+                  name="selectedItems"
+                  (change)="isSelected(seat.Seat_No, seat.Seat_type, seat)"
+                  [disabled]="seat.Booked_status"
+                />
+
+                <img
+                  src="./assets/seat3.png"
+                  alt="Seat"
+                  [ngStyle]="{
+                    border: this.female_color[i]
+                      ? '3px
+                    solid pink'
+                      : 'none'
+                  }"
+                  [style.border]="
+                    this.selectedState[seat.Seat_No]
+                      ? '2px solid black'
+                      : 'none'
+                  "
+                />
+                <span class="seat-number1">{{ seat.Seat_No }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row3" *ngFor="let seat of selected_bus; let i = index">
+          <div
+            class="checkbox-container"
+            *ngIf="seat.Seat_type === 'sleeper_upper' && i <= 27 && i >= 24"
+          >
+            <div class="sub">
+              <label
+                class="custom-checkbox seat-info"
+                [class.checked]="seat.Booked_status"
+                [class.disabled-checkbox]="seat.Booked_status"
+              >
+                <input
+                  type="checkbox"
+                  [value]="seat.BusNo"
+                  name="selectedItems"
+                  (change)="isSelected(seat.Seat_No, seat.Seat_type, seat)"
+                  [disabled]="seat.Booked_status"
+                />
+
+                <img
+                  src="./assets/seat3.png"
+                  alt="Seat"
+                  [ngStyle]="{
+                    border: this.female_color[i]
+                      ? '3px
+                    solid pink'
+                      : 'none'
+                  }"
+                  [style.border]="
+                    this.selectedState[seat.Seat_No]
+                      ? '2px solid black'
+                      : 'none'
+                  "
+                />
+                <span class="seat-number1" style="left: %; top: 30%;">{{ seat.Seat_No }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+<div class="center-button-container">
+  <button type="button" class="center-button" (click)="displaySelectedItems()">BOOK</button>
+</div>
+
+
+

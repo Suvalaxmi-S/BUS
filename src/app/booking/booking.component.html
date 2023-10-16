@@ -1,0 +1,26 @@
+<!-- <div class="main">
+  <div class="data" *ngFor="let val of values; let i = index">
+    <p>BOOKED PERSON DETAILS</p>
+    <div class="sub" *ngFor="let v of val; let j = index">
+      <p>SEAT NO:{{ selected_bus[i][j] }}</p>
+      <p>NAME:{{ v[i].name }}</p>
+      <p>GENDER:{{ v[i].gender }}</p>
+      <p>AGE:{{ v[i].age }}</p>
+    </div>
+  </div>
+</div> -->
+
+<div class="main">
+  
+    <p>BOOKED PERSON DETAILS</p>
+  
+      <div class="sub" *ngFor="let v of select; let j = index">
+        <p>SEAT_NO:{{select[j].Seat_No}}</p>
+        <p>NAME:{{ names[j] }}</p>
+        <p>GENDER:{{ genders[j] }}</p>
+        <p>AGE:{{ ages[j] }}</p>
+      </div>
+
+    
+
+</div>
