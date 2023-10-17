@@ -117,7 +117,7 @@
 
 .head {
   display: flex;
-  margin-left: 300px;
+  margin-left: 40%;
   margin-bottom: 30px;
   border: 2px solid black;
   width: 380px;
@@ -299,6 +299,7 @@ img {
   transform: translate(-50%, -50%);
   color: rgb(5, 4, 4);
   font-size: 12px;
+  font-weight: bold;
 }
 .seat-info {
   position: relative;
@@ -346,7 +347,7 @@ img {
 .heading {
   display: flex;
   justify-content: space-between;
-  padding-left: 350px;
+  padding-left: 42%;
   position: relative;
 }
 

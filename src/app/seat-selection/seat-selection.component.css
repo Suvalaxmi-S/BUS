@@ -45,7 +45,7 @@ button {
 
 .search {
   margin-top: 5px;
-  margin-left: 70px;
+  margin-left: 140px;
   display: flex;
   align-items: center;
 }
@@ -59,7 +59,7 @@ button {
   border-radius: 5px;
   font-size: 16px;
   outline: none;
-  margin-left:30%;
+  margin-left: 35%;
   position: relative;
 }
 
