@@ -254,7 +254,7 @@ export class AdminDetailsComponent implements OnInit {
   @ViewChild('f') form: NgForm;
 
   nav() {
-    this.router.navigate(['login']);
+    this.router.navigate(['admin']);
   }
 
   formvalue;
