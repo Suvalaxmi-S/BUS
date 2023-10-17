@@ -9,14 +9,37 @@
     </ul>
   </nav>
   <div class="login">
-    
-    <a *ngIf="!isLoggedIn()"routerLink="admin" [ngStyle]="{ 'background-color': isadminLog() ? 'green' : 'red' }">Admin</a>&nbsp;
-    <a *ngIf="!isadminLog()" routerLink="login" [ngStyle]="{ 'background-color': isLoggedIn() ? 'green' : 'red' }">User</a>&nbsp;
+    <ng-container *ngIf="!isLoggedIn()">
+      <a
+        *ngIf="!isadminLog()"
+        routerLink="admin"
+        [ngStyle]="{ 'background-color': isadminLog() ? 'green' : 'red' }"
+        >Admin</a
+      >
+      <a
+        *ngIf="isadminLog()"
+        [ngStyle]="{ 'background-color': 'green', cursor: 'default' }"
+        >Admin</a
+      >
+    </ng-container>
+    &nbsp;
+    <ng-container *ngIf="!isadminLog()">
+      <a
+        *ngIf="isLoggedIn()"
+        [ngStyle]="{ 'background-color': 'green', cursor: 'default' }"
+        >User</a
+      >
+      <a
+        *ngIf="!isLoggedIn()"
+        routerLink="login"
+        [ngStyle]="{ 'background-color': 'red' }"
+        >User</a
+      > </ng-container
+    >&nbsp;
 
     <ng-container *ngIf="isLoggedIn()">
       <a (click)="logout()">Logout</a>
     </ng-container>
-    
   </div>
 </header>
 <router-outlet></router-outlet>
