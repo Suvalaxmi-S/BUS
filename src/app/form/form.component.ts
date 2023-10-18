@@ -15,13 +15,15 @@ import { FormBuilder, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  myForm: FormGroup;
-  bus_No;
-  selected_bus;
-  selected_bus_name;
-  index;
-  selectedState: { [key: string]: boolean } = {};
-  selectedArray: string[] = [];
+  select: any[] = [];
+  Cost: number = 0;
+  names: any[] = [];
+  ages: any[] = [];
+  gender: any[] = [];
+  showUpiForm: boolean = false;
+  upiId: string = '';
+  showSuccessMessage = false;
+  canBook = true;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -29,62 +31,12 @@ export class FormComponent implements OnInit {
     private fb: FormBuilder,
     private busSer: BusesService
   ) {}
-  selectedItems: string[] = [];
-  select: any[] = [];
-  Cost: number = 0;
-  select_id: any[] = [];
-  global = null;
-  seatnumbers: any[] = [];
 
-  names: any[] = [];
-  ages: any[] = [];
-  gender: any[] = [];
-
-  canBook = true;
-  formValues: FormGroup[] = [];
-  duplicate_array: any[] = [];
-  // onSubmit(form: FormGroup) {
-  //   if (form.valid) {
-  //     const seatDataArray = this.formValues.map((seatForm) => seatForm.value);
-  //     this.duplicate_array.push(seatDataArray);
-  //     alert('Values added successfully');
-  //   }
-  // }
-
-  female() {}
-  seat;
   ngOnInit(): void {
     this.select = this.busSer.getObj();
     this.Cost = this.busSer.getCost();
-    //   this.myForm = this.fb.group({
-    //     name: [
-    //       '',
-    //       [
-    //         Validators.required,
-    //         Validators.minLength(3),
-    //         Validators.pattern(/^[a-zA-Z\s]*$/),
-    //       ],
-    //     ],
-    //     gender: ['', Validators.required],
-    //     age: [
-    //       '',
-    //       [
-    //         Validators.required,
-    //         Validators.min(5),
-    //         Validators.max(99),
-    //         Validators.pattern('^[0-9]*$'),
-    //       ],
-    //     ],
-    //   });
-    //   this.formValues.push(this.myForm);
-    // }
-    // isFemaleBooked(seat: any): boolean {
-    //   return seat.Gender === 'female' && seat.Booked_status;
-    // }
   }
-  showUpiForm: boolean = false;
-  upiId: string = '';
-  showSuccessMessage = false;
+
   display(): void {
     const areAgesValid = this.ages.every((age) => this.isAgeValid(age));
 
@@ -136,6 +88,7 @@ export class FormComponent implements OnInit {
     console.log('Form filled:', isFilled);
     return isFilled;
   }
+  //After submitting the form, it checks the upi id
   submitUpiForm() {
     if (this.validateUpiId(this.upiId)) {
       alert('TRANSCATION SUCCESSFULL ✅');

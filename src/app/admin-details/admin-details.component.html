@@ -1,5 +1,4 @@
 <div class="add">
-  <!-- <button type="button" (click)="add()">ADD BUS</button> -->
   <button class="lg" type="button" (click)="nav()">LOGOUT</button>
 </div>
 
@@ -148,7 +147,7 @@
 <div *ngIf="canView" class="main">
   <div class="bus-container">
     <h6>KRISHNA TRAVELS</h6>
-    <div *ngFor="let seat of BUS1">
+    <div *ngFor="let seat of busInfo1">
       <div *ngIf="seat.Booked_status == true" class="card">
         <p><b>BUS 1 - SEAT-NO:</b> {{ seat.Seat_No }}</p>
         <p><b>SEAT-TYPE:</b> {{ seat.Seat_type }}</p>
@@ -162,7 +161,7 @@
   <!-- BUS2 -->
   <div class="bus-container">
     <h6>SRI TRAVELS</h6>
-    <div *ngFor="let seat of BUS2">
+    <div *ngFor="let seat of busInfo2">
       <div *ngIf="seat.Booked_status == true" class="card">
         <p><b>BUS 2 - SEAT-NO:</b> {{ seat.Seat_No }}</p>
         <p><b>SEAT-TYPE:</b> {{ seat.Seat_type }}</p>
@@ -176,7 +175,7 @@
   <!-- BUS3 -->
   <div class="bus-container">
     <h6>JAI TRAVELS</h6>
-    <div *ngFor="let seat of BUS3">
+    <div *ngFor="let seat of busInfo3">
       <div *ngIf="seat.Booked_status == true" class="card">
         <p><b>BUS 3 - SEAT-NO:</b> {{ seat.Seat_No }}</p>
         <p><b>SEAT-TYPE:</b> {{ seat.Seat_type }}</p>

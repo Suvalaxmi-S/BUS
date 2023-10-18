@@ -14,38 +14,14 @@ import { NumberFormatStyle } from '@angular/common';
 })
 export class SeatSelectionComponent implements OnInit {
   searchTerm: string;
-  Bus_info;
-  search_bus;
+  busInfo;
+  searchBus;
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router
   ) {}
 
-  buses = {
-    BusNo: 985,
-    BusName: 'Jai Travels',
-    From: 'madurai',
-    To: 'Chennai',
-    AvailableSeat_S: 18,
-    AvailableSeat_SL_Upper: 15,
-    AvailableSeat_SL_Lower: 5,
-    BookedSeat_S: 0,
-    BookedSeat_SL_Upper: 0,
-    BookedSeat_SL_Lower: 0,
-    startsAt: '4:00 PM',
-    DepartureAt: '2:00 AM',
-    Seater_Price: 700,
-    Sleeper_upper_price: 1100,
-    Sleeper_lower_price: 1200,
-  };
-  seat = {
-    Booked_status: false,
-    BusNo: 985,
-    Gender: '',
-    Seat_No: 'SLU-10',
-    Seat_type: 'sleeper_upper',
-  };
   ngOnInit() {
     this.http
       .get(
@@ -63,19 +39,19 @@ export class SeatSelectionComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        this.Bus_info = res;
-        this.search_bus = res;
-        console.log(this.Bus_info);
+        this.busInfo = res;
+        this.searchBus = res;
+        console.log(this.busInfo);
       });
   }
 
   search() {
     if (this.searchTerm) {
-      this.search_bus = this.Bus_info.filter((bus) =>
+      this.searchBus = this.busInfo.filter((bus) =>
         bus.To.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     } else {
-      this.search_bus = this.Bus_info;
+      this.searchBus = this.busInfo;
     }
   }
 }

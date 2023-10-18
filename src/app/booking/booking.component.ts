@@ -10,8 +10,8 @@ import { BusesService } from '../services/buses.service';
 })
 export class BookingComponent implements OnInit {
   values: any[] = [];
-  selected_bus: any[] = [];
-  bus_No;
+  selectedBus: any[] = [];
+  busNo;
   select: any[] = [];
   names: any[] = [];
   ages: any[] = [];
@@ -27,38 +27,25 @@ export class BookingComponent implements OnInit {
     this.names = this.busSer.get_name();
     this.ages = this.busSer.get_age();
     this.genders = this.busSer.get_gender();
-    this.selected_bus = this.busSer.getSeat();
-    this.bus_No = this.busSer.getBus_No();
+    this.selectedBus = this.busSer.getSeat();
+    this.busNo = this.busSer.getBus_No();
     this.select = this.busSer.getObj();
 
     let i = 0;
-    // const flattenedArray = this.values.flat(Infinity);
-    // this.flat=flattenedArray;
-    // console.log("llll",this.flat);
-    // console.log("values",this.values);
-    // console.log('FLATTERENED ARRAY', flattenedArray);
-
-    if (this.bus_No == '456') {
-      // this.http
-      //   .post(
-      //     'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/Booked_bus1.json',
-      //     [flattenedArray, this.selected_bus]
-      //   )
-      //   .subscribe((res) => {
-      //     console.log(res);
-      //   });
+    //ON BOOKING SEATS THE VALUES ARE UPDATING IN DATABASE
+    if (this.busNo == '456') {
       this.select.forEach((item, index) => {
         const id = item.id;
-        const seat_no = item.Seat_No;
-        const Seat_type = item.Seat_type;
+        const seatNo = item.Seat_No;
+        const SeatType = item.Seat_type;
 
         const update_values = {
           Booked_status: true,
           BusNo: 456,
           Gender: this.genders[index],
           Name: this.names[index],
-          Seat_No: seat_no,
-          Seat_type: Seat_type,
+          Seat_No: seatNo,
+          Seat_type: SeatType,
           id: id,
         };
         console.log('Updating:', update_values);
@@ -73,26 +60,18 @@ export class BookingComponent implements OnInit {
       });
     }
 
-    if (this.bus_No == '789') {
-      // this.http
-      //   .post(
-      //     'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/Booked_bus2.json',
-      //     [flattenedArray, this.selected_bus]
-      //   )
-      //   .subscribe((res) => {
-      //     console.log(res);
-      //   });
+    if (this.busNo == '789') {
       this.select.forEach((item, index) => {
         const id = item.id;
-        const seat_no = item.Seat_No;
-        const Seat_type = item.Seat_type;
+        const seatNo = item.Seat_No;
+        const SeatType = item.Seat_type;
         const update_values = {
           Booked_status: true,
           BusNo: 789,
           Gender: this.genders[index],
           Name: this.names[index],
-          Seat_No: seat_no,
-          Seat_type: Seat_type,
+          Seat_No: seatNo,
+          Seat_type: SeatType,
           id: id,
         };
         console.log('Updating:', update_values);
@@ -106,26 +85,18 @@ export class BookingComponent implements OnInit {
           });
       });
     }
-    if (this.bus_No == '985') {
-      // this.http
-      //   .post(
-      //     'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/Booked_bus3.json',
-      //     [flattenedArray, this.selected_bus]
-      //   )
-      //   .subscribe((res) => {
-      //     console.log(res);
-      //   });
+    if (this.busNo == '985') {
       this.select.forEach((item, index) => {
         const id = item.id;
-        const seat_no = item.Seat_No;
-        const Seat_type = item.Seat_type;
+        const seatNo = item.Seat_No;
+        const SeatType = item.Seat_type;
         const update_values = {
           Booked_status: true,
           BusNo: 985,
-          Seat_No: seat_no,
+          Seat_No: seatNo,
           Gender: this.genders[index],
           Name: this.names[index],
-          Seat_type: Seat_type,
+          Seat_type: SeatType,
           id: id,
         };
         console.log('Updating:', update_values);

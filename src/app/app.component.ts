@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './shared/auth.service';
-import { AdminauthguardService } from './adminauthguard.service';
+import { AdminauthguardService } from './shared/adminauthguard.service';
 import { Router } from '@angular/router';
 
 @Component({

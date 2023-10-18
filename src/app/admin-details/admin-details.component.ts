@@ -12,15 +12,18 @@ import { Router } from '@angular/router';
 })
 export class AdminDetailsComponent implements OnInit {
   canAdd: boolean = false;
-  BUS1: any[] = [];
-  BUS2: any[] = [];
-  BUS3: any[] = [];
-  seater_count = 0;
-  sleeper_lower_count = 0;
-  sleeper_upper_count = 0;
-
+  busInfo1: any[] = [];
+  busInfo2: any[] = [];
+  busInfo3: any[] = [];
+  seaterCount = 0;
+  sleeperLowerCount = 0;
+  sleeperUpperCount = 0;
+  canView: boolean = true;
+  formVal;
+  @ViewChild('f') form: NgForm;
   constructor(private http: HttpClient, private router: Router) {}
   ngOnInit() {
+    //SEAT COUNT UPDATION IN DATABASE
     this.http
       .get(
         'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus1.json'
@@ -37,27 +40,27 @@ export class AdminDetailsComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        this.BUS1 = res;
-        console.log('bus1', this.BUS1);
+        this.busInfo1 = res;
+        console.log('bus1', this.busInfo1);
 
-        for (let i of this.BUS1) {
+        for (let i of this.busInfo1) {
           if (i.Booked_status === true && i.Seat_type === 'seater') {
-            this.seater_count += 1;
-            console.log(this.seater_count);
+            this.seaterCount += 1;
+            console.log(this.seaterCount);
           }
           if (i.Booked_status === true && i.Seat_type === 'sleeper_lower') {
-            this.sleeper_lower_count += 1;
-            console.log(this.sleeper_lower_count);
+            this.sleeperLowerCount += 1;
+            console.log(this.sleeperLowerCount);
           }
           if (i.Booked_status === true && i.Seat_type === 'sleeper_upper') {
-            this.sleeper_upper_count += 1;
-            console.log(this.sleeper_upper_count);
+            this.sleeperUpperCount += 1;
+            console.log(this.sleeperUpperCount);
           }
         }
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9jbrhw34KmouAnRzC/BookedSeat_S.json',
-            this.seater_count
+            this.seaterCount
           )
           .subscribe((res) => {
             console.log(res);
@@ -65,7 +68,7 @@ export class AdminDetailsComponent implements OnInit {
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9jbrhw34KmouAnRzC/BookedSeat_SL_Lower.json',
-            this.sleeper_lower_count
+            this.sleeperLowerCount
           )
           .subscribe((res) => {
             console.log(res);
@@ -73,14 +76,14 @@ export class AdminDetailsComponent implements OnInit {
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9jbrhw34KmouAnRzC/BookedSeat_SL_Upper.json',
-            this.sleeper_upper_count
+            this.sleeperUpperCount
           )
           .subscribe((res) => {
             console.log(res);
           });
-        this.seater_count = 0;
-        this.sleeper_lower_count = 0;
-        this.sleeper_upper_count = 0;
+        this.seaterCount = 0;
+        this.sleeperLowerCount = 0;
+        this.sleeperUpperCount = 0;
       });
 
     this.http
@@ -99,25 +102,25 @@ export class AdminDetailsComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        this.BUS2 = res;
-        for (let i of this.BUS2) {
+        this.busInfo2 = res;
+        for (let i of this.busInfo2) {
           if (i.Booked_status === true && i.Seat_type === 'seater') {
-            this.seater_count += 1;
-            console.log(this.seater_count);
+            this.seaterCount += 1;
+            console.log(this.seaterCount);
           }
           if (i.Booked_status === true && i.Seat_type === 'sleeper_lower') {
-            this.sleeper_lower_count += 1;
-            console.log(this.sleeper_lower_count);
+            this.sleeperLowerCount += 1;
+            console.log(this.sleeperLowerCount);
           }
           if (i.Booked_status === true && i.Seat_type === 'sleeper_upper') {
-            this.sleeper_upper_count += 1;
-            console.log(this.sleeper_upper_count);
+            this.sleeperUpperCount += 1;
+            console.log(this.sleeperUpperCount);
           }
         }
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9jw6i4Npf3HZ-Z6gl/BookedSeat_S.json',
-            this.seater_count
+            this.seaterCount
           )
           .subscribe((res) => {
             console.log(res);
@@ -125,7 +128,7 @@ export class AdminDetailsComponent implements OnInit {
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9jw6i4Npf3HZ-Z6gl/BookedSeat_SL_Lower.json',
-            this.sleeper_lower_count
+            this.sleeperLowerCount
           )
           .subscribe((res) => {
             console.log(res);
@@ -133,14 +136,14 @@ export class AdminDetailsComponent implements OnInit {
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9jw6i4Npf3HZ-Z6gl/BookedSeat_SL_Upper.json',
-            this.sleeper_upper_count
+            this.sleeperUpperCount
           )
           .subscribe((res) => {
             console.log(res);
           });
-        this.seater_count = 0;
-        this.sleeper_lower_count = 0;
-        this.sleeper_upper_count = 0;
+        this.seaterCount = 0;
+        this.sleeperLowerCount = 0;
+        this.sleeperUpperCount = 0;
       });
 
     this.http
@@ -159,25 +162,25 @@ export class AdminDetailsComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        this.BUS3 = res;
-        for (let i of this.BUS3) {
+        this.busInfo3 = res;
+        for (let i of this.busInfo3) {
           if (i.Booked_status === true && i.Seat_type === 'seater') {
-            this.seater_count += 1;
-            console.log(this.seater_count);
+            this.seaterCount += 1;
+            console.log(this.seaterCount);
           }
           if (i.Booked_status === true && i.Seat_type === 'sleeper_lower') {
-            this.sleeper_lower_count += 1;
-            console.log(this.sleeper_lower_count);
+            this.sleeperLowerCount += 1;
+            console.log(this.sleeperLowerCount);
           }
           if (i.Booked_status === true && i.Seat_type === 'sleeper_upper') {
-            this.sleeper_upper_count += 1;
-            console.log(this.sleeper_upper_count);
+            this.sleeperUpperCount += 1;
+            console.log(this.sleeperUpperCount);
           }
         }
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9kIbsexDg_-tlKEAZ/BookedSeat_S.json',
-            this.seater_count
+            this.seaterCount
           )
           .subscribe((res) => {
             console.log(res);
@@ -185,7 +188,7 @@ export class AdminDetailsComponent implements OnInit {
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9kIbsexDg_-tlKEAZ/BookedSeat_SL_Lower.json',
-            this.sleeper_lower_count
+            this.sleeperLowerCount
           )
           .subscribe((res) => {
             console.log(res);
@@ -193,19 +196,20 @@ export class AdminDetailsComponent implements OnInit {
         this.http
           .put(
             'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS/-Nf9kIbsexDg_-tlKEAZ/BookedSeat_SL_Upper.json',
-            this.sleeper_upper_count
+            this.sleeperUpperCount
           )
           .subscribe((res) => {
             console.log(res);
           });
-        this.seater_count = 0;
-        this.sleeper_lower_count = 0;
-        this.sleeper_upper_count = 0;
+        this.seaterCount = 0;
+        this.sleeperLowerCount = 0;
+        this.sleeperUpperCount = 0;
       });
   }
   add() {
     this.canAdd = false;
   }
+  //DELETED TICKET UPDATION IN DATABASE
   delete_ticket(bus) {
     const upd = {
       Booked_status: false,
@@ -251,24 +255,19 @@ export class AdminDetailsComponent implements OnInit {
         });
     }
   }
-  @ViewChild('f') form: NgForm;
 
   nav() {
     this.router.navigate(['admin']);
   }
 
-  formvalue;
-  canView: boolean = true;
-
-  formval;
   onSubmit(form: NgForm) {
     if (this.form.valid) {
-      this.formval = this.form.value;
-      console.log(this.formval);
+      this.formVal = this.form.value;
+      console.log(this.formVal);
       this.http
         .post(
           'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/BUS.json',
-          this.formval
+          this.formVal
         )
         .subscribe((res) => {
           console.log(res);

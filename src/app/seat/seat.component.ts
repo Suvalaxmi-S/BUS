@@ -16,11 +16,17 @@ import { FormBuilder, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
 })
 export class SeatComponent implements OnInit {
   myForm: FormGroup;
-  bus_No;
-  selected_bus;
-  selected_bus_name;
+  busNo;
+  selectedBus;
+  selectedBusName;
   selectedState: { [key: string]: boolean } = {};
   selectedArray: string[] = [];
+  selectedItems: string[] = [];
+  select: any[] = [];
+  Cost: number = 0;
+  selectId: any[] = [];
+  global = null;
+  seatNumbers: any[] = [];
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -28,12 +34,6 @@ export class SeatComponent implements OnInit {
     private fb: FormBuilder,
     private busSer: BusesService
   ) {}
-  selectedItems: string[] = [];
-  select: any[] = [];
-  Cost: number = 0;
-  select_id: any[] = [];
-  global = null;
-  seatnumbers: any[] = [];
 
   isSelected(seatNo: string, type: string, selected: object) {
     this.selectedState[seatNo] = !this.selectedState[seatNo];
@@ -62,7 +62,7 @@ export class SeatComponent implements OnInit {
           this.Cost = this.Cost + 1100;
       }
       this.busSer.send_cost(this.Cost);
-      this.busSer.sendata(this.selectedItems, this.bus_No, this.select);
+      this.busSer.sendata(this.selectedItems, this.busNo, this.select);
       this.router.navigate(['form']);
     } else {
       alert('a person can select a maximum of 5 seats only');
@@ -70,9 +70,9 @@ export class SeatComponent implements OnInit {
     console.log('Selected Items:', this.selectedItems);
   }
 
-  female_color = Array(28).fill(false);
+  femaleSeatColor = Array(28).fill(false);
 
-  Array1 = [
+  windowSeats = [
     'S1',
     'S2',
     'S3',
@@ -84,7 +84,7 @@ export class SeatComponent implements OnInit {
     'SLU-3',
     'SLU-4',
   ];
-  Array2 = [
+  adjacentSeats = [
     'S7',
     'S8',
     'S9',
@@ -102,7 +102,7 @@ export class SeatComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const busNo = params.get('Bus_No');
-      this.bus_No = busNo;
+      this.busNo = busNo;
       console.log(busNo);
     });
 
@@ -129,7 +129,7 @@ export class SeatComponent implements OnInit {
 
     // Iterate through buses
     for (const bus of buses) {
-      if (this.bus_No === bus.busNo) {
+      if (this.busNo === bus.busNo) {
         console.log('hello');
         this.fetchAndProcessBusData(bus);
       }
@@ -159,26 +159,26 @@ export class SeatComponent implements OnInit {
       )
       .subscribe((res) => {
         // Process the bus data
-        this.selected_bus = res;
-        console.log(this.selected_bus);
+        this.selectedBus = res;
+        console.log(this.selectedBus);
 
-        for (let i in this.Array1) {
-          for (let k in this.selected_bus) {
-            if (this.selected_bus[k].Seat_No === this.Array1[i]) {
+        for (let i in this.windowSeats) {
+          for (let k in this.selectedBus) {
+            if (this.selectedBus[k].Seat_No === this.windowSeats[i]) {
               if (
-                this.selected_bus[k].Booked_status === true &&
-                this.selected_bus[k].Gender === 'female'
+                this.selectedBus[k].Booked_status === true &&
+                this.selectedBus[k].Gender === 'female'
               ) {
-                for (let j in this.selected_bus) {
-                  if (this.Array2[i] === this.selected_bus[j].Seat_No) {
-                    if (this.selected_bus[j].Booked_status === false) {
-                      this.female_color[j] = true;
+                for (let j in this.selectedBus) {
+                  if (this.adjacentSeats[i] === this.selectedBus[j].Seat_No) {
+                    if (this.selectedBus[j].Booked_status === false) {
+                      this.femaleSeatColor[j] = true;
                       this.global = j;
-                      this.selected_bus[j]['only_female'] = true;
+                      this.selectedBus[j]['only_female'] = true;
                       console.log(
                         'booo',
-                        this.selected_bus[j],
-                        this.female_color
+                        this.selectedBus[j],
+                        this.femaleSeatColor
                       );
                     }
                   }
@@ -188,23 +188,23 @@ export class SeatComponent implements OnInit {
           }
         }
 
-        for (let i in this.Array2) {
-          for (let k in this.selected_bus) {
-            if (this.selected_bus[k].Seat_No === this.Array2[i]) {
+        for (let i in this.adjacentSeats) {
+          for (let k in this.selectedBus) {
+            if (this.selectedBus[k].Seat_No === this.adjacentSeats[i]) {
               if (
-                this.selected_bus[k].Booked_status === true &&
-                this.selected_bus[k].Gender === 'female'
+                this.selectedBus[k].Booked_status === true &&
+                this.selectedBus[k].Gender === 'female'
               ) {
-                for (let j in this.selected_bus) {
-                  if (this.Array1[i] === this.selected_bus[j].Seat_No) {
-                    if (this.selected_bus[j].Booked_status === false) {
-                      this.female_color[j] = true;
+                for (let j in this.selectedBus) {
+                  if (this.windowSeats[i] === this.selectedBus[j].Seat_No) {
+                    if (this.selectedBus[j].Booked_status === false) {
+                      this.femaleSeatColor[j] = true;
                       this.global = j;
-                      this.selected_bus[j]['only_female'] = true;
+                      this.selectedBus[j]['only_female'] = true;
                       console.log(
                         'booo',
-                        this.selected_bus[j],
-                        this.female_color,
+                        this.selectedBus[j],
+                        this.femaleSeatColor,
                         j
                       );
                     }
@@ -234,43 +234,44 @@ export class SeatComponent implements OnInit {
         })
       )
       .subscribe((res) => {
-        this.selected_bus_name = res;
-        console.log(this.selected_bus_name);
+        this.selectedBusName = res;
+        console.log(this.selectedBusName);
       });
 
-    const checkboxNames = [
-      'S1',
-      'S2',
-      'S3',
-      'S4',
-      'S5',
-      'S6',
-      'S7',
-      'S8',
-      'S9',
-      'S10',
-      'S11',
-      'S12',
-      'SLL-1',
-      'SLL-2',
-      'SLL-3',
-      'SLL-4',
-      'SLU-1',
-      'SLU-2',
-      'SLU-3',
-      'SLU-4',
-      'SLU-5',
-      'SLU-6',
-      'SLU-7',
-      'SLU-8',
-      'SLU-9',
-      'SLU-10',
-      'SLU-11',
-      'SLU-12',
-    ];
-
-    this.seatnumbers.forEach((name) => {
+    // checkboxnames
+    this.seatNumbers.forEach((name) => {
       this.selectedState[name] = false;
     });
   }
 }
+
+// const checkboxNames = [
+//   'S1',
+//   'S2',
+//   'S3',
+//   'S4',
+//   'S5',
+//   'S6',
+//   'S7',
+//   'S8',
+//   'S9',
+//   'S10',
+//   'S11',
+//   'S12',
+//   'SLL-1',
+//   'SLL-2',
+//   'SLL-3',
+//   'SLL-4',
+//   'SLU-1',
+//   'SLU-2',
+//   'SLU-3',
+//   'SLU-4',
+//   'SLU-5',
+//   'SLU-6',
+//   'SLU-7',
+//   'SLU-8',
+//   'SLU-9',
+//   'SLU-10',
+//   'SLU-11',
+//   'SLU-12',
+// ];

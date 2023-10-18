@@ -15,34 +15,44 @@ import { SeatComponent } from './seat/seat.component';
 import { SeatSelectionComponent } from './seat-selection/seat-selection.component';
 import { BookingComponent } from './booking/booking.component';
 import { HomeComponent } from './home/home.component';
-import { ContactComponent } from './contact/contact.component';
+
 import { AdminComponent } from './admin/admin.component';
 import { AdminDetailsComponent } from './admin-details/admin-details.component';
 import { AuthService } from './shared/auth.service';
-import { AuthguardService } from './authguard.service';
+import { AuthguardService } from './shared/authguard.service';
 import { FormComponent } from './form/form.component';
-import { AdminauthguardService } from './adminauthguard.service';
-
-
-
-
+import { AdminauthguardService } from './shared/adminauthguard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'login/signup', component: SignupComponent },
-  { path: 'seat/:Bus_No', component: SeatComponent,canActivate: [AuthguardService]},
+  {
+    path: 'seat/:Bus_No',
+    component: SeatComponent,
+    canActivate: [AuthguardService],
+  },
   { path: 'login/signup/login', component: LoginComponent },
-  { path: 'seat', component: SeatComponent,canActivate: [AuthguardService] },
-  { path: 'book', component: BookingComponent ,canActivate: [AuthguardService]},
-  { path: 'buses', component: SeatSelectionComponent,canActivate: [AuthguardService] },
+  { path: 'seat', component: SeatComponent, canActivate: [AuthguardService] },
+  {
+    path: 'book',
+    component: BookingComponent,
+    canActivate: [AuthguardService],
+  },
+  {
+    path: 'buses',
+    component: SeatSelectionComponent,
+    canActivate: [AuthguardService],
+  },
   { path: 'home', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'home/contact', component: ContactComponent },
+
   { path: 'admin', component: AdminComponent },
-  { path: 'admindetails', component: AdminDetailsComponent,canActivate:[AdminauthguardService] },
-  {path:'form',component:FormComponent,canActivate: [AuthguardService]}
-  
+  {
+    path: 'admindetails',
+    component: AdminDetailsComponent,
+    canActivate: [AdminauthguardService],
+  },
+  { path: 'form', component: FormComponent, canActivate: [AuthguardService] },
 ];
 
 @NgModule({
@@ -50,19 +60,14 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     SignupComponent,
-
     SeatComponent,
-
     SeatSelectionComponent,
     BookingComponent,
     HomeComponent,
-    ContactComponent,
+
     AdminComponent,
     AdminDetailsComponent,
     FormComponent,
-   
-
-  
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,7 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     HttpClientModule,
   ],
-  providers: [BusesService,AuthService],
+  providers: [BusesService, AuthService],
   bootstrap: [AppComponent],
   exports: [RouterModule],
 })

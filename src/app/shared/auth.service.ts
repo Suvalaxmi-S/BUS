@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  value:boolean=false;
+  value: boolean = false;
   admin_login;
   constructor(private fireauth: AngularFireAuth, private route: Router) {}
 
@@ -14,7 +14,7 @@ export class AuthService {
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       () => {
         localStorage.setItem('token', 'true');
-        this.value=true;
+        this.value = true;
         this.route.navigate(['/buses']);
       },
       (err) => {
@@ -38,15 +38,13 @@ export class AuthService {
   }
   getTokenValue(): boolean {
     // Retrieve the token value from localStorage or any other source
-    
+
     return this.value;
   }
-  send_admin(bool)
-  {
-   this.admin_login=bool;
+  sendAdmin(bool) {
+    this.admin_login = bool;
   }
-  getadmin()
-  {
+  getadmin() {
     return this.admin_login;
   }
 }

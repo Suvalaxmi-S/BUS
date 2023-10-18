@@ -20,12 +20,12 @@ import { AuthService } from '../shared/auth.service';
 })
 export class AdminComponent implements OnInit {
   loginForm: FormGroup;
-  BUS1: any[] = [];
-  BUS2: any[] = [];
-  BUS3: any[] = [];
+  busInfo1: any[] = [];
+  busInfo2: any[] = [];
+  busInfo3: any[] = [];
   formValues: any[] = [];
-  selected_seats: any[] = [];
-  bus_No;
+  selectedSeats: any[] = [];
+  busNo;
   canView: boolean = false;
   result;
   constructor(
@@ -37,6 +37,7 @@ export class AdminComponent implements OnInit {
     private authSer: AuthService
   ) {}
   ngOnInit(): void {
+    //form validations
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -50,12 +51,13 @@ export class AdminComponent implements OnInit {
         ],
       ],
     });
-    this.selected_seats = this.busSer.getSeat();
-    this.bus_No = this.busSer.getBus_No();
+    // retrieving the selectedSeats info from service
+    this.selectedSeats = this.busSer.getSeat();
+    this.busNo = this.busSer.getBus_No();
     this.formValues = this.busSer.getdata();
-    console.log(this.selected_seats, this.bus_No, this.formValues);
+    console.log(this.selectedSeats, this.busNo, this.formValues);
   }
-  view_details() {}
+
   get email() {
     return this.loginForm.get('email');
   }
@@ -69,7 +71,7 @@ export class AdminComponent implements OnInit {
       const email = this.loginForm.value.email;
       const password = this.loginForm.value.password;
       if (email === 'admin@gmail.com' && password === 'Admin@123') {
-        this.authSer.send_admin('true');
+        this.authSer.sendAdmin('true');
         this.router.navigate(['admindetails']);
       } else {
         alert('Please enter valid email and password');

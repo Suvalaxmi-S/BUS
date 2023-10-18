@@ -13,7 +13,10 @@
               [(ngModel)]="names[i]"
               name="name{{ i }}"
               #name="ngModel"
+              minlength="3"
+              maxlength="20"
               required
+              pattern="(\s*[a-zA-Z]+\s*)+"
             />
             <div *ngIf="name.invalid && (name.dirty || name.touched)">
               <p class="error-message">Name is required.</p>
@@ -32,7 +35,12 @@
               <option *ngIf="!obj.only_female" value="male">Male</option>
               <option value="female">Female</option>
             </select>
-            <div *ngIf="genderModel.invalid && (genderModel.dirty || genderModel.touched)">
+            <div
+              *ngIf="
+                genderModel.invalid &&
+                (genderModel.dirty || genderModel.touched)
+              "
+            >
               <p class="error-message">Gender is required.</p>
             </div>
           </div>
@@ -52,7 +60,6 @@
               <p class="error-message">Age should be between 5 and 99.</p>
             </div>
           </div>
-          
         </div>
 
         <div class="center-button-container">
@@ -69,8 +76,6 @@
     <label for="upiId">Enter UPI ID:</label>
 
     <input type="text" id="upiId" [(ngModel)]="upiId" name="upiId" required />
-
-    <!-- Display the amount next to the input field -->
 
     <button type="submit">Submit</button>
   </form>

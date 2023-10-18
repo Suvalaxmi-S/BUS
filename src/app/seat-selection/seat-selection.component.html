@@ -1,9 +1,9 @@
 <div class="search">
-  <input type="text"  [(ngModel)]="searchTerm" placeholder="Destination" />
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Destination" />
   <button type="submit" (click)="search()">search</button>
 </div>
 <div class="image-box">
-  <div class="image-container" *ngFor="let bs of search_bus">
+  <div class="image-container" *ngFor="let bs of searchBus">
     <a><img src="{{ bs.img }}" alt="bus image" /></a>
 
     <div class="name">
@@ -25,7 +25,6 @@
       >{{ bs.To }}
     </p>
     <div>
-      <!-- <button type="submit" (click)="navigate(bs.BusNo)">View Seats</button> -->
       <button type="submit" [routerLink]="['/seat', bs.BusNo]">
         View Seats
       </button>

@@ -23,7 +23,7 @@
   <div class="main-container">
     <div class="lower">
       <div>
-        <div class="row11" *ngFor="let seat of selected_bus; let i = index">
+        <div class="row11" *ngFor="let seat of selectedBus; let i = index">
           <div
             class="checkbox-container"
             *ngIf="seat.Seat_type === 'seater' && i <= 5"
@@ -45,7 +45,7 @@
                   src="./assets/seater.png"
                   alt="Seat"
                   [ngStyle]="{
-                    border: this.female_color[i]
+                    border: this.femaleSeatColor[i]
                       ? '3px
                   solid pink'
                       : 'none'
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div>
-        <div class="row12" *ngFor="let seat of selected_bus; let i = index">
+        <div class="row12" *ngFor="let seat of selectedBus; let i = index">
           <div
             class="checkbox-container seat-info"
             *ngIf="seat.Seat_type === 'seater' && i <= 11 && i >= 6"
@@ -86,7 +86,7 @@
                   src="./assets/seater.png"
                   alt="Seat"
                   [ngStyle]="{
-                    border: this.female_color[i]
+                    border: this.femaleSeatColor[i]
                       ? '3px
                     solid pink'
                       : 'none'
@@ -104,7 +104,7 @@
         </div>
       </div>
       <div>
-        <div class="row13" *ngFor="let seat of selected_bus; let i = index">
+        <div class="row13" *ngFor="let seat of selectedBus; let i = index">
           <div
             class="checkbox-container"
             *ngIf="seat.Seat_type === 'sleeper_lower' && i <= 15 && i >= 12"
@@ -127,7 +127,7 @@
                   src="./assets/seat3.png"
                   alt="Seat"
                   [ngStyle]="{
-                    border: this.female_color[i]
+                    border: this.femaleSeatColor[i]
                       ? '3px
                     solid pink'
                       : 'none'
@@ -147,7 +147,7 @@
     </div>
     <div class="upper">
       <div>
-        <div class="row1" *ngFor="let seat of selected_bus; let i = index">
+        <div class="row1" *ngFor="let seat of selectedBus; let i = index">
           <div
             class="checkbox-container"
             *ngIf="seat.Seat_type === 'sleeper_upper' && i >= 16 && i <= 19"
@@ -170,7 +170,7 @@
                   src="./assets/seat3.png"
                   alt="Seat"
                   [ngStyle]="{
-                    border: this.female_color[i]
+                    border: this.femaleSeatColor[i]
                       ? '3px
                   solid pink'
                       : 'none'
@@ -188,7 +188,7 @@
         </div>
       </div>
       <div>
-        <div class="row2" *ngFor="let seat of selected_bus; let i = index">
+        <div class="row2" *ngFor="let seat of selectedBus; let i = index">
           <div
             class="checkbox-container"
             *ngIf="seat.Seat_type === 'sleeper_upper' && i <= 23 && i >= 20"
@@ -211,7 +211,7 @@
                   src="./assets/seat3.png"
                   alt="Seat"
                   [ngStyle]="{
-                    border: this.female_color[i]
+                    border: this.femaleSeatColor[i]
                       ? '3px
                     solid pink'
                       : 'none'
@@ -229,7 +229,7 @@
         </div>
       </div>
       <div>
-        <div class="row3" *ngFor="let seat of selected_bus; let i = index">
+        <div class="row3" *ngFor="let seat of selectedBus; let i = index">
           <div
             class="checkbox-container"
             *ngIf="seat.Seat_type === 'sleeper_upper' && i <= 27 && i >= 24"
@@ -252,7 +252,7 @@
                   src="./assets/seat3.png"
                   alt="Seat"
                   [ngStyle]="{
-                    border: this.female_color[i]
+                    border: this.femaleSeatColor[i]
                       ? '3px
                     solid pink'
                       : 'none'
@@ -263,9 +263,7 @@
                       : 'none'
                   "
                 />
-                <span class="seat-number1" style="left: %; top: 30%">{{
-                  seat.Seat_No
-                }}</span>
+                <span class="seat-number1">{{ seat.Seat_No }}</span>
               </label>
             </div>
           </div>
