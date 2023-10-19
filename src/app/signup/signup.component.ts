@@ -13,6 +13,7 @@ export class SignupComponent implements OnInit {
   formSubmitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService) {
+    //form validation
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -25,10 +26,12 @@ export class SignupComponent implements OnInit {
       ],
     });
   }
+  ngOnInit(): void {}
+  //retrieving email value from form
   get email() {
     return this.signupForm.get('email');
   }
-
+  //retrieving password value from form
   get password() {
     return this.signupForm.get('password');
   }
@@ -43,5 +46,4 @@ export class SignupComponent implements OnInit {
       this.formSubmitted = false;
     }
   }
-  ngOnInit(): void {}
 }

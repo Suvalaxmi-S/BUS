@@ -17,6 +17,20 @@
                 autocomplete="off"
               />
             </div>
+            <div class="error" *ngIf="formSubmitted">
+              <div *ngIf="signupForm.get('email').hasError('required')">
+                Email is required.
+              </div>
+              <div
+                *ngIf="
+                  signupForm.get('email').hasError('email') &&
+                  signupForm.get('email').touched
+                "
+              >
+                Please enter a valid email address.
+              </div>
+            </div>
+
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label"
                 >Password
@@ -28,14 +42,19 @@
                 autocomplete="off"
               />
             </div>
-            <div *ngIf="formSubmitted">
+            <div class="error" *ngIf="formSubmitted">
               <div *ngIf="signupForm.get('password').hasError('required')">
                 Password is required.
               </div>
               <div *ngIf="signupForm.get('password').hasError('minlength')">
                 Password must be at least 8 characters long.
               </div>
-              <div *ngIf="signupForm.get('password').hasError('pattern')">
+              <div
+                *ngIf="
+                  signupForm.get('password').hasError('pattern') &&
+                  password.touched
+                "
+              >
                 Password must contain at least one uppercase letter, one
                 lowercase letter, and one digit.
               </div>

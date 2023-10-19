@@ -27,51 +27,7 @@ export class SeatComponent implements OnInit {
   selectId: any[] = [];
   global = null;
   seatNumbers: any[] = [];
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder,
-    private busSer: BusesService
-  ) {}
-
-  isSelected(seatNo: string, type: string, selected: object) {
-    this.selectedState[seatNo] = !this.selectedState[seatNo];
-
-    if (this.selectedState[seatNo]) {
-      this.selectedItems.push(seatNo);
-      this.select.push(selected);
-    } else {
-      this.selectedItems = this.selectedItems.filter((item) => item !== seatNo);
-      this.select = this.select.filter((item) => item.Seat_No !== seatNo);
-    }
-
-    console.log('OBJECT_MAIN:', this.select);
-    console.log(this.selectedItems, this.Cost);
-  }
-
-  canBook = false;
-  displaySelectedItems() {
-    if (this.select.length <= 5) {
-      this.canBook = true;
-      for (let i in this.select) {
-        if (this.select[i].Seat_type === 'seater') this.Cost = this.Cost + 700;
-        if (this.select[i].Seat_type === 'sleeper_lower')
-          this.Cost = this.Cost + 1200;
-        if (this.select[i].Seat_type === 'sleeper_upper')
-          this.Cost = this.Cost + 1100;
-      }
-      this.busSer.send_cost(this.Cost);
-      this.busSer.sendata(this.selectedItems, this.busNo, this.select);
-      this.router.navigate(['form']);
-    } else {
-      alert('a person can select a maximum of 5 seats only');
-    }
-    console.log('Selected Items:', this.selectedItems);
-  }
-
   femaleSeatColor = Array(28).fill(false);
-
   windowSeats = [
     'S1',
     'S2',
@@ -96,9 +52,13 @@ export class SeatComponent implements OnInit {
     'SLU-7',
     'SLU-8',
   ];
-
-  female() {}
-  seat;
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
+    private busSer: BusesService
+  ) {}
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const busNo = params.get('Bus_No');
@@ -111,12 +71,14 @@ export class SeatComponent implements OnInit {
         busNo: '456',
         seatUrl:
           'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus1.json',
+
         ind: 0,
       },
       {
         busNo: '789',
         seatUrl:
           'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus2.json',
+
         ind: 1,
       },
       {
@@ -142,6 +104,9 @@ export class SeatComponent implements OnInit {
     seatUrl: string;
     ind: number;
   }): void {
+    const updateData = {
+      only_female: true,
+    };
     this.http
       .get(bus.seatUrl)
       .pipe(
@@ -175,6 +140,7 @@ export class SeatComponent implements OnInit {
                       this.femaleSeatColor[j] = true;
                       this.global = j;
                       this.selectedBus[j]['only_female'] = true;
+
                       console.log(
                         'booo',
                         this.selectedBus[j],
@@ -242,6 +208,49 @@ export class SeatComponent implements OnInit {
     this.seatNumbers.forEach((name) => {
       this.selectedState[name] = false;
     });
+  }
+
+  isSelected(seatNo: string, type: string, selected: object) {
+    this.selectedState[seatNo] = !this.selectedState[seatNo];
+    const index = this.seatNumbers.indexOf(seatNo);
+    if (this.selectedState[seatNo]) {
+      this.selectedItems.push(seatNo);
+      this.select.push(selected);
+      if (this.femaleSeatColor[index]) {
+        // Reset border color to the original color for selected female seats
+        this.femaleSeatColor[index] = false;
+      }
+    } else {
+      this.selectedItems = this.selectedItems.filter((item) => item !== seatNo);
+      this.select = this.select.filter((item) => item.Seat_No !== seatNo);
+      if (type === 'seater' && this.femaleSeatColor[index]) {
+        // Set border color to pink for unselected female seats
+        this.femaleSeatColor[index] = true;
+      }
+    }
+
+    console.log('OBJECT_MAIN:', this.select);
+    console.log(this.selectedItems, this.Cost);
+  }
+
+  canBook = false;
+  displaySelectedItems() {
+    if (this.select.length <= 5) {
+      this.canBook = true;
+      for (let i in this.select) {
+        if (this.select[i].Seat_type === 'seater') this.Cost = this.Cost + 700;
+        if (this.select[i].Seat_type === 'sleeper_lower')
+          this.Cost = this.Cost + 1200;
+        if (this.select[i].Seat_type === 'sleeper_upper')
+          this.Cost = this.Cost + 1100;
+      }
+      this.busSer.sendCost(this.Cost);
+      this.busSer.sendData(this.selectedItems, this.busNo, this.select);
+      this.router.navigate(['form']);
+    } else {
+      alert('a person can select a maximum of 5 seats only');
+    }
+    console.log('Selected Items:', this.selectedItems);
   }
 }
 

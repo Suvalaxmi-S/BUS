@@ -15,18 +15,18 @@ export class BusesService {
   ages: any[] = [];
   genders: any[] = [];
 
-  sendata(selectedItems, bus_No, select) {
+  sendData(selectedItems, bus_No, select) {
     this.selected_seats.push(selectedItems);
     this.bus_No = bus_No;
     this.select = select;
   }
-  getdata() {
+  getData() {
     return this.values;
   }
   getSeat() {
     return this.selected_seats;
   }
-  getBus_No() {
+  getBusNo() {
     return this.bus_No;
   }
   getObj() {
@@ -37,37 +37,33 @@ export class BusesService {
     this.ages = ages;
     this.genders = genders;
   }
-  formValues_names() {
-    return this.names;
-  }
-  formValues_ages() {
-    return this.ages;
-  }
-  formValues_genders() {
-    return this.genders;
-  }
-  send_cost(cost) {
+  // formValues_names() {
+  //   return this.names;
+  // }
+  // formValues_ages() {
+  //   return this.ages;
+  // }
+  // formValues_genders() {
+  //   return this.genders;
+  // }
+  sendCost(cost) {
     this.Cost = cost;
   }
   getCost() {
     return this.Cost;
   }
-  send_form(name, age, gender) {
+  sendForm(name, age, gender) {
     this.names = name;
     this.ages = age;
     this.genders = gender;
   }
-  get_name() {
+  getName() {
     return this.names;
   }
-  get_age() {
+  getAge() {
     return this.ages;
   }
-  get_gender() {
+  getGender() {
     return this.genders;
-  }
-  bus_array: any[] = ['KRISHNA TRAVELS', 'SRI TRAVELS', 'JK TRAVELS'];
-  get_bus() {
-    return this.bus_array;
   }
 }

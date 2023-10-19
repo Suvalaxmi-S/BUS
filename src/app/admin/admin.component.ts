@@ -53,8 +53,8 @@ export class AdminComponent implements OnInit {
     });
     // retrieving the selectedSeats info from service
     this.selectedSeats = this.busSer.getSeat();
-    this.busNo = this.busSer.getBus_No();
-    this.formValues = this.busSer.getdata();
+    this.busNo = this.busSer.getBusNo();
+    this.formValues = this.busSer.getData();
     console.log(this.selectedSeats, this.busNo, this.formValues);
   }
 

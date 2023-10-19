@@ -41,10 +41,11 @@ export class FormComponent implements OnInit {
     const areAgesValid = this.ages.every((age) => this.isAgeValid(age));
 
     if (this.areAllFieldsFilled() && areAgesValid) {
-      this.busSer.send_form(this.names, this.ages, this.gender);
+      this.busSer.sendForm(this.names, this.ages, this.gender);
       console.log('Name:', this.names);
       console.log('Ages:', this.ages);
       console.log('Gender:', this.gender);
+      this.canBook = false;
       this.showUpiForm = true;
     } else {
       alert(
