@@ -44,7 +44,7 @@ export class SeatSelectionComponent implements OnInit {
         console.log(this.busInfo);
       });
   }
-
+  // SEARCH BAR IMPLEMENTATION
   search() {
     if (this.searchTerm) {
       this.searchBus = this.busInfo.filter((bus) =>

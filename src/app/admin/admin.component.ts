@@ -57,7 +57,7 @@ export class AdminComponent implements OnInit {
     this.formValues = this.busSer.getData();
     console.log(this.selectedSeats, this.busNo, this.formValues);
   }
-
+  // getting the email and password values for validating
   get email() {
     return this.loginForm.get('email');
   }
@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
   get password() {
     return this.loginForm.get('password');
   }
-
+  // method for validating the entered email and password values with stored values
   login() {
     if (this.loginForm.valid) {
       const email = this.loginForm.value.email;

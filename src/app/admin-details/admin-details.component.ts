@@ -23,7 +23,7 @@ export class AdminDetailsComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   constructor(private http: HttpClient, private router: Router) {}
   ngOnInit() {
-    //SEAT COUNT UPDATION IN DATABASE
+    //SEAT COUNT UPDATION IN DATABASE FOR EACH BUS
     this.http
       .get(
         'https://sample-eb12c-default-rtdb.asia-southeast1.firebasedatabase.app/seat_bus1.json'
@@ -259,7 +259,7 @@ export class AdminDetailsComponent implements OnInit {
   nav() {
     this.router.navigate(['admin']);
   }
-
+  // bus information validation for adding the bus
   onSubmit(form: NgForm) {
     if (this.form.valid) {
       this.formVal = this.form.value;

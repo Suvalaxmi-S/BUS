@@ -23,6 +23,7 @@ export class BookingComponent implements OnInit {
     private http: HttpClient
   ) {}
   ngOnInit(): void {
+    //GETTING VALUES FROM SERVICE
     this.values = this.busSer.getData();
     this.names = this.busSer.getName();
     this.ages = this.busSer.getAge();

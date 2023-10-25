@@ -170,8 +170,9 @@ img {
 }
 /* Add your custom styles for the UPI dialog box */
 .upi-dialog {
+  margin-top: 200px;
   max-width: 400px;
-  margin: 20px auto;
+  margin-left: 450px;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ccc;

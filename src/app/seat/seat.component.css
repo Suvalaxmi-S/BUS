@@ -120,7 +120,7 @@
   margin-left: 40%;
   margin-bottom: 30px;
   border: 2px solid black;
-  width: 380px;
+  width: 480px;
   position: relative;
 
   /* Adjust as needed */
@@ -130,7 +130,7 @@
   display: flex;
   align-items: center;
   text-align: right;
-  margin-left: 10px;
+  margin-left: 0px;
 }
 
 .f1 img {
@@ -164,6 +164,11 @@ img {
   height: 30px;
   border: 3px solid pink;
   /* Adjust the margin as needed */
+}
+.f5 {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgb(90, 89, 89);
 }
 /* Add your custom styles for the UPI dialog box */
 .upi-dialog {

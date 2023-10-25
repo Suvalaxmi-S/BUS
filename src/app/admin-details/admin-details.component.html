@@ -1,7 +1,8 @@
+<!-- Enabling Logout button-->
 <div class="add">
   <button class="lg" type="button" (click)="nav()">LOGOUT</button>
 </div>
-
+<!--Form  for getting the bus details-->
 <div *ngIf="canAdd">
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" class="add_form">
     <label
@@ -144,6 +145,7 @@
     <button type="submit">Submit</button>
   </form>
 </div>
+<!-- Displaying the selected seats in each bus-->
 <div *ngIf="canView" class="main">
   <div class="bus-container">
     <h6>KRISHNA TRAVELS</h6>

@@ -1,3 +1,4 @@
+<!--Seat booking form-->
 <div *ngIf="canBook">
   <div class="center-form">
     <div class="form-container">
@@ -33,7 +34,7 @@
               required
             >
               <option *ngIf="!obj.only_female" value="male">Male</option>
-              <option value="female">Female</option>
+              <option *ngIf="!obj.only_male" value="female">Female</option>
             </select>
             <div
               *ngIf="
@@ -69,7 +70,7 @@
     </div>
   </div>
 </div>
-
+<!--If the form is valid, it asks upi id-->
 <div class="upi-dialog" *ngIf="showUpiForm">
   <form (ngSubmit)="submitUpiForm()">
     <P id="tottal_cost">AMOUNT:{{ Cost }}</P>

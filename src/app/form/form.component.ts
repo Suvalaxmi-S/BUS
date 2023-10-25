@@ -33,11 +33,13 @@ export class FormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //retrieving the values from service
     this.select = this.busSer.getObj();
     this.Cost = this.busSer.getCost();
   }
 
   display(): void {
+    //AGE VALIDATION
     const areAgesValid = this.ages.every((age) => this.isAgeValid(age));
 
     if (this.areAllFieldsFilled() && areAgesValid) {
@@ -58,6 +60,7 @@ export class FormComponent implements OnInit {
     return age >= 5 && age <= 99;
   }
   areAllFieldsFilled(): boolean {
+    //validation for all fields
     const isFilled =
       this.names.length > 0 &&
       this.names.length === this.select.length &&

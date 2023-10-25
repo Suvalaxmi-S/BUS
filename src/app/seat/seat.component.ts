@@ -28,6 +28,7 @@ export class SeatComponent implements OnInit {
   global = null;
   seatNumbers: any[] = [];
   femaleSeatColor = Array(28).fill(false);
+  maleSeatColor = Array(28).fill(false);
   windowSeats = [
     'S1',
     'S2',
@@ -126,7 +127,7 @@ export class SeatComponent implements OnInit {
         // Process the bus data
         this.selectedBus = res;
         console.log(this.selectedBus);
-
+        //VALIDATING THE FEMALE SEATS
         for (let i in this.windowSeats) {
           for (let k in this.selectedBus) {
             if (this.selectedBus[k].Seat_No === this.windowSeats[i]) {
@@ -171,6 +172,58 @@ export class SeatComponent implements OnInit {
                         'booo',
                         this.selectedBus[j],
                         this.femaleSeatColor,
+                        j
+                      );
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        for (let i in this.windowSeats) {
+          for (let k in this.selectedBus) {
+            if (this.selectedBus[k].Seat_No === this.windowSeats[i]) {
+              if (
+                this.selectedBus[k].Booked_status === true &&
+                this.selectedBus[k].Gender === 'male'
+              ) {
+                for (let j in this.selectedBus) {
+                  if (this.adjacentSeats[i] === this.selectedBus[j].Seat_No) {
+                    if (this.selectedBus[j].Booked_status === false) {
+                      this.maleSeatColor[j] = true;
+                      this.global = j;
+
+                      console.log(
+                        'booo',
+                        this.selectedBus[j],
+                        this.maleSeatColor
+                      );
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        for (let i in this.adjacentSeats) {
+          for (let k in this.selectedBus) {
+            if (this.selectedBus[k].Seat_No === this.adjacentSeats[i]) {
+              if (
+                this.selectedBus[k].Booked_status === true &&
+                this.selectedBus[k].Gender === 'male'
+              ) {
+                for (let j in this.selectedBus) {
+                  if (this.windowSeats[i] === this.selectedBus[j].Seat_No) {
+                    if (this.selectedBus[j].Booked_status === false) {
+                      this.maleSeatColor[j] = true;
+                      this.global = j;
+
+                      console.log(
+                        'booo',
+                        this.selectedBus[j],
+                        this.maleSeatColor,
                         j
                       );
                     }
