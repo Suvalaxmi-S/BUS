@@ -220,6 +220,7 @@ export class AdminDetailsComponent implements OnInit {
       Seat_type: bus.Seat_type,
       id: bus.id,
       only_female: false,
+      only_male: false,
     };
     if (bus.BusNo == 456) {
       this.http

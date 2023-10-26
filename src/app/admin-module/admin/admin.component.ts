@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BusesService } from '../services/buses.service';
+import { BusesService } from '../../services/buses.service';
 import { HttpClient } from '@angular/common/http';
 import { pipe, map } from 'rxjs';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../shared/auth.service';
+import { AuthService } from '../../shared/auth.service';
 
 @Component({
   selector: 'app-admin',

@@ -14,6 +14,8 @@ export class BusesService {
   names: any[] = [];
   ages: any[] = [];
   genders: any[] = [];
+  male: any[] = [];
+  female: any[] = [];
 
   sendData(selectedItems, bus_No, select) {
     this.selected_seats.push(selectedItems);
@@ -65,5 +67,17 @@ export class BusesService {
   }
   getGender() {
     return this.genders;
+  }
+  sendFem(female) {
+    this.female = female;
+  }
+  sendMal(male) {
+    this.male = male;
+  }
+  getMal() {
+    return this.male;
+  }
+  getFem() {
+    return this.female;
   }
 }

@@ -4,7 +4,7 @@ import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pipe, map } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { BusesService } from '../services/buses.service';
+import { BusesService } from '../../services/buses.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
@@ -107,6 +107,7 @@ export class SeatComponent implements OnInit {
   }): void {
     const updateData = {
       only_female: true,
+      only_male: true,
     };
     this.http
       .get(bus.seatUrl)
@@ -193,9 +194,10 @@ export class SeatComponent implements OnInit {
                     if (this.selectedBus[j].Booked_status === false) {
                       this.maleSeatColor[j] = true;
                       this.global = j;
+                      this.selectedBus[j]['only_male'] = true;
 
                       console.log(
-                        'booo',
+                        'bo1',
                         this.selectedBus[j],
                         this.maleSeatColor
                       );
@@ -219,9 +221,10 @@ export class SeatComponent implements OnInit {
                     if (this.selectedBus[j].Booked_status === false) {
                       this.maleSeatColor[j] = true;
                       this.global = j;
+                      this.selectedBus[j]['only_male'] = true;
 
                       console.log(
-                        'booo',
+                        'boo2',
                         this.selectedBus[j],
                         this.maleSeatColor,
                         j
@@ -261,6 +264,8 @@ export class SeatComponent implements OnInit {
     this.seatNumbers.forEach((name) => {
       this.selectedState[name] = false;
     });
+    this.busSer.sendFem(this.femaleSeatColor);
+    this.busSer.sendMal(this.maleSeatColor);
   }
 
   isSelected(seatNo: string, type: string, selected: object) {

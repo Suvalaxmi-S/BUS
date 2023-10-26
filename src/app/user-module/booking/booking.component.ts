@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BusesService } from '../services/buses.service';
+import { BusesService } from '../../services/buses.service';
 
 @Component({
   selector: 'app-booking',

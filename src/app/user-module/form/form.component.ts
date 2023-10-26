@@ -4,7 +4,7 @@ import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { pipe, map } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { BusesService } from '../services/buses.service';
+import { BusesService } from '../../services/buses.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { FormBuilder, FormGroup, FormArray, ValidatorFn } from '@angular/forms';
@@ -24,6 +24,8 @@ export class FormComponent implements OnInit {
   upiId: string = '';
   showSuccessMessage = false;
   canBook = true;
+  male: any[] = [];
+  female: any[] = [];
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
@@ -36,6 +38,8 @@ export class FormComponent implements OnInit {
     //retrieving the values from service
     this.select = this.busSer.getObj();
     this.Cost = this.busSer.getCost();
+    this.male = this.busSer.getMal();
+    this.female = this.busSer.getFem();
   }
 
   display(): void {
