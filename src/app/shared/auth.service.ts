@@ -6,20 +6,23 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  value: boolean = false;
-  admin_login;
-  constructor(private fireauth: AngularFireAuth, private route: Router) {}
+  isAuthenticated: boolean = false;
+
+  constructor(private fireauth: AngularFireAuth, private route: Router) {
+    // Check for the presence of the token during initialization
+    this.isAuthenticated = !!localStorage.getItem('token');
+  }
 
   login(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       () => {
-        localStorage.setItem('token', 'true');
-        this.value = true;
+        // Save the authentication token in local storage
+        localStorage.setItem('token', 'your_auth_token');
+        this.isAuthenticated = true; // Set to true when the user logs in
         this.route.navigate(['/buses']);
       },
       (err) => {
-        alert('something went wrong');
-        this.route.navigate(['/login']);
+        alert('Login failed. Please check your credentials.');
       }
     );
   }
@@ -27,20 +30,35 @@ export class AuthService {
   signup(email: string, password: string) {
     this.fireauth.createUserWithEmailAndPassword(email, password).then(
       () => {
-        alert('registration successful');
+        alert('Registration successful');
         this.route.navigate(['/login']);
       },
       (err) => {
-        alert('not registered');
+        alert('Registration failed');
         this.route.navigate(['/signup']);
       }
     );
   }
+
   getTokenValue(): boolean {
     // Retrieve the token value from localStorage or any other source
-
-    return this.value;
+    return this.isAuthenticated;
   }
+
+  logout() {
+    // Remove the authentication token from local storage
+    localStorage.removeItem('token');
+    this.isAuthenticated = false; // Set to false when the user logs out
+
+    this.fireauth.signOut().then(() => {
+      console.log('User signed out successfully');
+      this.route.navigate(['/login']);
+    });
+  }
+
+  value: boolean = false;
+  admin_login;
+
   sendAdmin(bool) {
     this.admin_login = bool;
   }

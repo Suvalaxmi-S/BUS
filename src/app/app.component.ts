@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
     return this.authSer.getTokenValue() && !this.authSer.getadmin();
   }
   logout() {
-    this.router.navigate(['login']);
+    this.authSer.logout();
+    // this.router.navigate(['login']);
   }
   logout1() {
     this.router.navigate(['admin']);

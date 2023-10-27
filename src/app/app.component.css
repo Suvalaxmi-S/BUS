@@ -1,6 +1,5 @@
 body,
 ul {
-  margin: 0;
   padding: 0;
 }
 
@@ -48,15 +47,15 @@ nav a {
 .login a:hover {
   background-color: #ff7043;
 }
-.active-link{
-  color:aqua;
+.active-link {
+  color: aqua;
 }
-.active1{
+.active1 {
   background-color: green;
 }
-.active1{
+.active1 {
   background-color: green;
 }
-.none{
+.none {
   background-color: #ff5722;
 }
